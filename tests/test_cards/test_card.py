@@ -19,6 +19,16 @@ def card(test_rank, test_suit):
 
 
 @pytest.fixture
+def same_card():
+    return Card(test_rank, test_suit)
+
+
+@pytest.fixture
+def diff_card():
+    return Card('10', 'S')
+
+
+@pytest.fixture
 def ranks_to_values():
     non_face_cards = {str(num): num for num in range(1, 11)}
     non_face_cards.update(
@@ -73,8 +83,13 @@ def test_card_init_type_errors(rank, suit):
         Card(rank, suit)
 
 
+def test_card_equality(card, same_card, diff_card):
+    assert card == same_card
+    assert card != diff_card
+
+
 def test_card_render(card):
-    assert isinstance(card.render())
+    assert isinstance(card.render(), str)
 
 
 def test_card_suit(card, test_suit):

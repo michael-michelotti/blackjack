@@ -10,15 +10,23 @@ class Card:
         }
     )
 
-    valid_ranks = [str(num) for num in range(1, 11)]
+    valid_ranks = [str(num) for num in range(2, 11)]
     valid_ranks.extend(['J', 'Q', 'K', 'A'])
-    valid_suits = ['H', 'D', 'C', 'S']
+    valid_suits = ['S', 'H', 'D', 'C']
 
     # Beginning of instance attributes
     def __init__(self, rank, suit):
         self._rank = rank
         self._suit = suit
-        self.value = type(self).ranks_to_values[rank]
+        self._value = None
+
+    def __repr__(self):
+        return f'({self.rank} of {self.suit})'
+
+    def __eq__(self, other):
+        if not isinstance(other, Card):
+            return NotImplemented
+        return (self.rank, self.suit) == (other.rank, other.suit)
 
     @property
     def rank(self):
@@ -34,7 +42,7 @@ class Card:
 
     @property
     def suit(self):
-        return self._rank
+        return self._suit
 
     @suit.setter
     def suit(self, value):
@@ -44,16 +52,20 @@ class Card:
             raise ValueError(f'Invalid suit: {value}.Suit must be in: {", ".join(type(self).valid_suits)}')
         self._suit = value
 
+    @property
+    def value(self):
+        if self._value is None:
+            return type(self).ranks_to_values[self._rank]
+        else:
+            return self._value
+
     def render(self):
         return f"""
-        ________________
-        | {self.rank}    {self.rank}  |
-        |                        |
-        |                        |
-        |                        |
-        |        {self.suit}        |
-        |                        |
-        |                        |
-        | {self.rank}    {self.rank}    |
-        _________________
-        """
+_________
+| {self.rank}    {self.rank} |
+|        |
+|   {self.suit}    |
+|        |
+| {self.rank}    {self.rank} |
+_________
+"""
