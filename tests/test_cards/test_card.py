@@ -19,7 +19,7 @@ def card(test_rank, test_suit):
 
 
 @pytest.fixture
-def same_card():
+def same_card(test_rank, test_suit):
     return Card(test_rank, test_suit)
 
 

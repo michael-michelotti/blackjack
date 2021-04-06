@@ -16,17 +16,17 @@ class Card:
 
     # Beginning of instance attributes
     def __init__(self, rank, suit):
-        self._rank = rank
-        self._suit = suit
+        self.rank = rank
+        self.suit = suit
         self._value = None
 
     def __repr__(self):
-        return f'({self.rank} of {self.suit})'
+        return f'({self._rank} of {self._suit})'
 
     def __eq__(self, other):
         if not isinstance(other, Card):
             return NotImplemented
-        return (self.rank, self.suit) == (other.rank, other.suit)
+        return (self._rank, self._suit) == (other._rank, other._suit)
 
     @property
     def rank(self):
@@ -35,7 +35,7 @@ class Card:
     @rank.setter
     def rank(self, value):
         if not isinstance(value, str):
-            raise TypeError(f'Rank must be a string in: {", ".join(type(self).valid_ranks)}')
+            raise TypeError(f'Rank must be a string.')
         if value not in type(self).valid_ranks:
             raise ValueError(f'Invalid rank: {value}. Rank must be in: {", ".join(type(self).valid_ranks)}')
         self._rank = value
@@ -47,7 +47,7 @@ class Card:
     @suit.setter
     def suit(self, value):
         if not isinstance(value, str):
-            raise TypeError(f'Suit must be a string in: {", ".join(type(self).valid_suits)}')
+            raise TypeError(f'Suit must be a string.')
         if value not in type(self).valid_suits:
             raise ValueError(f'Invalid suit: {value}.Suit must be in: {", ".join(type(self).valid_suits)}')
         self._suit = value
@@ -55,7 +55,7 @@ class Card:
     @property
     def value(self):
         if self._value is None:
-            return type(self).ranks_to_values[self._rank]
+            return type(self).ranks_to_values[self.rank]
         else:
             return self._value
 
@@ -69,3 +69,7 @@ _________
 | {self.rank}    {self.rank} |
 _________
 """
+
+
+x = Card('A', 'D')
+print(x.value)
