@@ -2,6 +2,7 @@ import itertools
 import random
 
 from .card import Card
+from actors.participant import Participant
 
 
 class Deck:
@@ -10,6 +11,7 @@ class Deck:
         self.deck = [Card(valid_ranks, valid_suits)
                      for valid_ranks, valid_suits
                      in itertools.product(valid_ranks, valid_suits)]
+        self.participants = []
 
     def __repr__(self):
         return f'Deck(cards={len(self.deck)}, discard={len(self.discard_pile)})'
@@ -79,3 +81,7 @@ class Deck:
         self.discard_pile.extend(self.deck[:num_cards])
         del self.deck[:num_cards]
 
+    def add_participant(self, participant):
+        if not isinstance(participant, Participant):
+            raise TypeError('All members of the game must be a Participant object.')
+        self.participants.append(participant)

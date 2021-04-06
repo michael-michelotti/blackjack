@@ -4,11 +4,6 @@ from cards.deck import Deck
 from cards.card import Card
 
 
-@pytest.fixture()
-def deck():
-    return Deck()
-
-
 def test_deck_instantiation():
     my_deck = Deck()
     assert isinstance(my_deck, Deck)
