@@ -24,6 +24,9 @@ class Deck:
 
         return self.deck[idx]
 
+    def __delitem__(self, key):
+        del self.deck[key]
+
     def __iter__(self):
         return self.DeckIterator(self)
 

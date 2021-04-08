@@ -1,19 +1,24 @@
 from actors import Player, Dealer
 from cards import Card, Deck, Hand, Table
+from events.registration import handle_player_registration
 
 
-main_deck = Deck()
+def main():
+    # Initial table setup
+    main_deck = Deck()
+    dealer = Dealer(main_deck)
+    main_table = Table(dealer, players=[])
 
-dealer = Dealer(main_deck)
+    # Player registration
+    handle_player_registration(main_table)
 
-player_one = Player(main_deck, 'Michael')
-player_two = Player(main_deck, 'Kushol')
+    # Initial hand dealing
+    for player in main_table.players:
+        dealer.shuffle_deck()
+        dealer.deal_cards(2, player)
+        print(f'{player.name}\'s hand:' + player.hand.render())
 
-dealer.add_player(player_one)
-dealer.add_player(player_two)
 
-dealer.deal_round(initial_hand=True)
-
-print(player_one.hand.value)
-
-print('Hello')
+if __name__ == '__main__':
+    # Main game loop
+    main()

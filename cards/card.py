@@ -69,7 +69,3 @@ _________
 | {self.rank}    {self.rank} |
 _________
 """
-
-
-x = Card('A', 'D')
-print(x.value)

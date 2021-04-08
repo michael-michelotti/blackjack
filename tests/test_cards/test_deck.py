@@ -73,7 +73,7 @@ def test_deck_invalid_discards(deck, cards):
 
 
 def test_deck_shuffle_method(deck):
-    assert deck.shuffle() is None
+    assert deck._shuffle() is None
 
 
 def test_deck_reshuffle_method(deck):

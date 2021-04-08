@@ -10,7 +10,9 @@ class Hand:
         return len(self._cards)
 
     def __repr__(self):
-        return f'Hand({", ".join(repr(card) for card in self._cards)})'
+        if self.cards:
+            return f'Hand({", ".join(repr(card) for card in self._cards)})'
+        return f'Hand(empty)'
 
     @property
     def cards(self):
@@ -32,4 +34,4 @@ class Hand:
         return f'{"".join(card.render() for card in self._cards)}'
 
     def receive_cards(self, cards):
-        self._cards.extend(cards)
+        self.cards.extend(cards)
