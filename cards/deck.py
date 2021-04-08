@@ -2,7 +2,6 @@ import itertools
 import random
 
 from .card import Card
-from actors.participant import Participant
 
 
 class Deck:
@@ -82,6 +81,6 @@ class Deck:
         del self.deck[:num_cards]
 
     def add_participant(self, participant):
-        if not isinstance(participant, Participant):
-            raise TypeError('All members of the game must be a Participant object.')
+        # if not isinstance(participant, Participant):
+        #     raise TypeError('All members of the game must be a Participant object.')
         self.participants.append(participant)

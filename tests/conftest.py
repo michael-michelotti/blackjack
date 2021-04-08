@@ -1,5 +1,6 @@
 import pytest
 
+from actors.dealer import Dealer
 from cards.card import Card
 from cards.deck import Deck
 from cards.hand import Hand
@@ -52,3 +53,19 @@ def deck():
 @pytest.fixture
 def hand(test_card_one, test_card_two):
     return Hand(test_card_one, test_card_two)
+
+
+@pytest.fixture
+def dealer(deck):
+    return Dealer(deck)
+
+
+@pytest.fixture
+def player(deck):
+    return Player(deck)
+
+
+@pytest.fixture
+def dealer_with_player(dealer, player):
+    dealer.add_player(player)
+    return dealer

@@ -3,7 +3,7 @@ from .card import Card
 
 class Hand:
     def __init__(self, *cards):
-        self.cards = cards
+        self.cards = list(cards)
         self._value = None
 
     def __len__(self):
