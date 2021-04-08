@@ -30,3 +30,6 @@ class Hand:
 
     def render(self):
         return f'{"".join(card.render() for card in self._cards)}'
+
+    def receive_cards(self, cards):
+        self._cards.extend(cards)

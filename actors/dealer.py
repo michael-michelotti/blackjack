@@ -3,18 +3,16 @@ from .participant import Participant
 
 class Dealer(Participant):
     def __init__(self, deck):
-        self.players = []
-        super().__init__(deck)
+        self.deck = deck
+        super().__init__()
 
-    def __repr(self):
-        return f'Dealer(deck={self.deck}, num_players={len(self.players)})'
-
-    def add_player(self, player):
-        self.players.append(player)
-
-    def deal_round(self, *, initial_hand=False):
-        for player in self.players:
-            player.hand.cards.append(self.deck.deal(2 if initial_hand else 1))
+    def __repr__(self):
+        return f'Dealer(deck={self.deck})'
 
     def deal_cards(self, num_cards, player):
-        player.hand.cards.append(self.deck.deal(num_cards))
+        deck_stop_index = num_cards - 1
+        player.hand.receive_cards(self.deck[:deck_stop_index])
+        del self.deck[:deck_stop_index]
+
+    def receive_discard(self, cards):
+        self.deck.discard_pile.extend(cards)

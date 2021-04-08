@@ -6,11 +6,10 @@ from .card import Card
 
 class Deck:
     def __init__(self, *, valid_ranks=Card.valid_ranks, valid_suits=Card.valid_suits):
-        self.discard_pile = []
         self.deck = [Card(valid_ranks, valid_suits)
                      for valid_ranks, valid_suits
                      in itertools.product(valid_ranks, valid_suits)]
-        self.participants = []
+        self.discard_pile = []
 
     def __repr__(self):
         return f'Deck(cards={len(self.deck)}, discard={len(self.discard_pile)})'
@@ -43,24 +42,6 @@ class Deck:
             self._index += 1
             return next_val
 
-    def deal(self, num_cards):
-        if not isinstance(num_cards, int):
-            raise TypeError('You can only deal a number of cards')
-        if num_cards > len(self.deck):
-            raise IndexError('There are not that many cards left in the deck')
-        if num_cards <= 0:
-            raise ValueError('You can only deal a positive number of cards')
-        dealt_cards = self.deck[:num_cards]
-        del self.deck[:num_cards]
-        return dealt_cards
-
-    def discard(self, cards):
-        if not all(isinstance(card, Card) for card in cards):
-            raise TypeError('Can only discard a list of Cards')
-        if not isinstance(cards, list):
-            raise TypeError('You can only discard a list of Cards')
-        self.discard_pile.extend(cards)
-
     def shuffle(self):
         random.shuffle(self.deck)
 
@@ -79,8 +60,3 @@ class Deck:
 
         self.discard_pile.extend(self.deck[:num_cards])
         del self.deck[:num_cards]
-
-    def add_participant(self, participant):
-        # if not isinstance(participant, Participant):
-        #     raise TypeError('All members of the game must be a Participant object.')
-        self.participants.append(participant)
