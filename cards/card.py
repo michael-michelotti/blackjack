@@ -1,14 +1,7 @@
 class Card:
     # Class attributes which define what ranks and suits are viable for a card
     ranks_to_values = {str(num): num for num in range(1, 11)}
-    ranks_to_values.update(
-        {
-            'J': 10,
-            'Q': 10,
-            'K': 10,
-            'A': 11
-        }
-    )
+    ranks_to_values.update({'J': 10, 'Q': 10, 'K': 10, 'A': 11})
 
     valid_ranks = [str(num) for num in range(2, 11)]
     valid_ranks.extend(['J', 'Q', 'K', 'A'])
@@ -69,3 +62,13 @@ _________
 | {self.rank}    {self.rank} |
 _________
 """
+
+
+def render_card_back():
+    return """_________
+|$  $  $|
+|       |
+|   $   |
+|       |
+|$  $  $|
+---------"""

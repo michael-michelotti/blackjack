@@ -13,6 +13,10 @@ class Dealer(Participant):
         player.hand.receive_cards(self._deck[:num_cards])
         del self._deck[:num_cards]
 
+    def deal_self_cards(self, num_cards):
+        self.hand.receive_cards(self._deck[:num_cards])
+        del self._deck[:num_cards]
+
     def receive_discard(self, cards):
         self._deck.discard_pile.extend(cards)
 

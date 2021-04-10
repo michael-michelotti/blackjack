@@ -1,4 +1,5 @@
 from .card import Card
+import functools
 
 
 class Hand:
@@ -6,13 +7,16 @@ class Hand:
         self.cards = list(cards)
         self._value = None
 
-    def __len__(self):
-        return len(self._cards)
-
     def __repr__(self):
         if self.cards:
             return f'Hand({", ".join(repr(card) for card in self._cards)})'
         return f'Hand(empty)'
+
+    def __len__(self):
+        return len(self._cards)
+
+    def __getitem__(self, item):
+        return self.cards[item]
 
     @property
     def cards(self):
@@ -26,9 +30,18 @@ class Hand:
 
     @property
     def value(self):
-        if self._value is None:
-            self._value = sum(card.value for card in self._cards)
+        ace_11_value = sum(card.value for card in self._cards)
+        if ace_11_value > 21 and any(card.rank == 'A' for card in self._cards):
+            ace_1_value = functools.reduce(self.calc_value_with_ace, self._cards)
+            self._value = ace_1_value
+        self._value = ace_11_value
         return self._value
+
+    @staticmethod
+    def calc_value_with_ace(card):
+        if card.rank == 'A':
+            return 1
+        return card.value
 
     def render(self):
         return f'{"".join(card.render() for card in self._cards)}'
