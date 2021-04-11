@@ -2,6 +2,7 @@ import pytest
 
 from actors.dealer import Dealer
 from actors.player import Player
+from actors.participant import Participant
 from cards.card import Card
 from cards.deck import Deck
 from cards.hand import Hand
@@ -64,6 +65,11 @@ def deck():
 @pytest.fixture
 def hand(card_one, card_two):
     return Hand(card_one, card_two)
+
+
+@pytest.fixture
+def participant():
+    return Participant()
 
 
 @pytest.fixture
