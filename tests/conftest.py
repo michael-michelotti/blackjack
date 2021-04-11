@@ -78,8 +78,13 @@ def dealer(deck):
 
 
 @pytest.fixture
-def player():
-    return Player('Michael')
+def test_name():
+    return 'Michael'
+
+
+@pytest.fixture
+def player(test_name):
+    return Player(test_name)
 
 
 @pytest.fixture
