@@ -1,10 +1,15 @@
+import itertools
+
 from .participant import Participant
 
 
 class Player(Participant):
+    player_id = itertools.count(1)
+
     def __init__(self, name, init_bank=0):
         self.name = name
         self.bank = init_bank
+        self.id = next(type(self).player_id)
         super().__init__()
 
     def __repr__(self):

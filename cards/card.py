@@ -53,15 +53,13 @@ class Card:
             return self._value
 
     def render(self):
-        return f"""
-_________
+        return f"""_________
 | {self.rank}    {self.rank} |
 |        |
 |   {self.suit}    |
 |        |
 | {self.rank}    {self.rank} |
-_________
-"""
+_________"""
 
 
 def render_card_back():

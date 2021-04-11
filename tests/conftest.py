@@ -1,9 +1,20 @@
 import pytest
 
 from actors.dealer import Dealer
+from actors.player import Player
 from cards.card import Card
 from cards.deck import Deck
 from cards.hand import Hand
+
+
+@pytest.fixture
+def custom_ranks():
+    return ['20', '30', '40']
+
+
+@pytest.fixture
+def custom_suits():
+    return ['Apples', 'Oranges']
 
 
 @pytest.fixture
@@ -45,14 +56,14 @@ def ranks_to_values():
     return non_face_cards
 
 
-@pytest.fixture()
+@pytest.fixture
 def deck():
     return Deck()
 
 
 @pytest.fixture
-def hand(test_card_one, test_card_two):
-    return Hand(test_card_one, test_card_two)
+def hand(card_one, card_two):
+    return Hand(card_one, card_two)
 
 
 @pytest.fixture
@@ -61,11 +72,12 @@ def dealer(deck):
 
 
 @pytest.fixture
-def player(deck):
-    return Player(deck)
+def player():
+    return Player('Michael')
 
 
 @pytest.fixture
-def dealer_with_player(dealer, player):
-    dealer.add_player(player)
-    return dealer
+def deck_with_discard(deck):
+    deck.discard_pile.extend(deck[:3])
+    del deck[:3]
+    return deck

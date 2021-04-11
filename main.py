@@ -6,16 +6,16 @@ from events.turns import handle_player_turns, handle_determine_winner
 
 
 def main():
+    # Initial table setup
+    main_deck = Deck()
+    dealer = Dealer(main_deck)
+    main_table = Table(dealer, players=[])
+
+    # Player registration
+    handle_player_registration(main_table)
+
     playing = True
     while playing:
-        # Initial table setup
-        main_deck = Deck()
-        dealer = Dealer(main_deck)
-        main_table = Table(dealer, players=[])
-
-        # Player registration
-        handle_player_registration(main_table)
-
         # Initial hand dealing
         dealer.shuffle_deck()
         handle_initial_deal(main_table)

@@ -9,8 +9,7 @@ from cards.card import Card
         ('A', 'D'),
         ('Q', 'S'),
         ('2', 'H')
-    )
-)
+    ))
 def test_card_init(ranks_to_values, rank, suit):
     my_card = Card(rank, suit)
     assert my_card.rank == rank
@@ -24,8 +23,7 @@ def test_card_init(ranks_to_values, rank, suit):
         ('Invalid', 'D'),
         ('D', 'Q'),
         ('7', 'Invalid')
-    )
-)
+    ))
 def test_card_init_value_errors(rank, suit):
     with pytest.raises(ValueError):
         Card(rank, suit)
@@ -37,8 +35,7 @@ def test_card_init_value_errors(rank, suit):
         (7, 'D'),
         ('A', 10),
         ('7', ['D', 'H'])
-    )
-)
+    ))
 def test_card_init_type_errors(rank, suit):
     with pytest.raises(TypeError):
         Card(rank, suit)
