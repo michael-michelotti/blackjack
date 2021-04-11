@@ -1,6 +1,8 @@
 from cards.hand import Hand
 from actors.participant import Participant
 
+# Added a comment
+
 
 def test_initialization():
     assert isinstance(Participant(), Participant)
