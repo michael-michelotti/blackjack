@@ -1,4 +1,5 @@
 import pytest
+import pytest_html
 
 from actors.dealer import Dealer
 from actors.player import Player
@@ -77,9 +78,9 @@ def dealer(deck):
     return Dealer(deck)
 
 
-@pytest.fixture
-def test_name():
-    return 'Michael'
+@pytest.fixture(params=['Michael M', 'J'])
+def test_name(request):
+    return request.param
 
 
 @pytest.fixture
