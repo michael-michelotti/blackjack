@@ -25,4 +25,3 @@ def test_receive_discard(dealer, player):
     dealer.receive_discard(player.hand)
 
     assert len(dealer._deck.discard_pile) == 2
-

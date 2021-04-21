@@ -1,5 +1,4 @@
 import pytest
-import pytest_html
 
 from actors.dealer import Dealer
 from actors.player import Player
@@ -19,14 +18,14 @@ def custom_suits():
     return ['Apples', 'Oranges']
 
 
-@pytest.fixture
-def test_rank():
-    return 'A'
+@pytest.fixture(params=['2', 'A', 'J'])
+def test_rank(request):
+    return request.param
 
 
-@pytest.fixture
-def test_suit():
-    return 'D'
+@pytest.fixture(params=['D', 'H'])
+def test_suit(request):
+    return request.param
 
 
 @pytest.fixture
