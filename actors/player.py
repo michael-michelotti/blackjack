@@ -12,7 +12,7 @@ class Player(Participant):
         if not isinstance(name, str):
             raise TypeError(f'Player name must be a string. You tried: {name}')
         if not name or not all(letter in string.ascii_letters + ' ' for letter in name):
-            raise ValueError(f'Player name must be only letters. You tried: {name}')
+            raise ValueError(f'Player name must be only letters and spaces. You tried: {name}')
         self.name = name
 
         if not isinstance(init_bank, numbers.Real):

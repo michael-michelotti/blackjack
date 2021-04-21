@@ -1,8 +1,8 @@
 def handle_initial_deal(table):
     dealer = table.dealer
-    dealer.deal_self_cards(2)
+    dealer.deal_cards(2, to_self=True)
 
-    print(f'Dealer\'s Card:')
+    print('Dealer\'s Cards:')
     for player in table.players:
         dealer.deal_cards(2, player)
 

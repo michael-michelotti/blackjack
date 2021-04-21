@@ -28,8 +28,8 @@ def test_value_property(hand, card_one, card_two):
 
 def test_value_over_21_with_ace(card_one, card_two):
     """Test hand with an ace and value over 21"""
-    over_21_hand = Hand(card_one, card_two, card_two)
-    assert over_21_hand.value == 21
+    over_21_hand = Hand(Card('A', 'D'), Card('J', 'S'), Card('3', 'C'))
+    assert over_21_hand.value == 14
 
 
 def test_render(hand):

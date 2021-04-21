@@ -6,6 +6,7 @@ from actors.participant import Participant
 from cards.card import Card
 from cards.deck import Deck
 from cards.hand import Hand
+from cards.table import Table
 
 
 @pytest.fixture
@@ -77,7 +78,7 @@ def dealer(deck):
     return Dealer(deck)
 
 
-@pytest.fixture(params=['Michael M', 'J'])
+@pytest.fixture(params=['Michael M'])
 def test_name(request):
     return request.param
 
@@ -92,3 +93,8 @@ def deck_with_discard(deck):
     deck.discard_pile.extend(deck[:3])
     del deck[:3]
     return deck
+
+
+@pytest.fixture
+def table(dealer, player):
+    return Table(dealer, [player])
